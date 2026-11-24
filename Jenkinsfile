@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Verify') {
             steps {
-                sh 'curl --fail --retry 10 --retry-delay 2 http://host.docker.internal:${APP_PORT}/health'
+                sh 'curl --fail --retry 10 --retry-delay 2 --retry-connrefused http://host.docker.internal:${APP_PORT}/health'
                 sh 'curl --fail http://host.docker.internal:${APP_PORT}/'
             }
         }
